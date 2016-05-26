@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Logic Tree v1.0 Documentation</title>
+<style type="text/css">
+a:link, a:visited {
+  color:#555;
+  text-decoration:none;
+  border-bottom:1px solid #555;
+}
+a:active, a:hover {
+  border-bottom-style:dashed;
+}
+a[rel="external"] {
+  padding-right:15px;
+  background:transparent url(docpics/external.gif) no-repeat center right;
+}
+body {
+  background:#ddd url(docPics/background.jpg) repeat-y fixed top center;
+  margin:0;
+  padding:0;
+}
+div {clear:both;}
+table {
+  border:1px solid black;
+  margin:auto;
+}
+td, th {
+  border:1px solid black;
+  text-align:center;
+  padding:.25em;
+}
+samp {
+  padding-left:2em;
+  line-height:2em;
+  display:block;
+}
+ol li {margin:1em;}
+ul li {margin:.25em;}
+#content {
+  width:700px;
+  padding:20px 50px;
+  margin:auto;
+}
+#header, #footer {text-align:center;}
+#footer {font-size:small;}
+.right {
+  float:right;
+  margin-left:10px;
+}
+.progTerm {font-family:Monospace;}
+.return {
+  font-size:smaller;
+  font-style:italic;
+}
+</style>
+</head>
+<body>
+<div id="content">
+  <div id="header">
+    <img src="docPics/TreeLogo.gif" alt="Logic Tree Logo" />
+    <h1>Logic Tree v1.0 Documentation</h1>
+  </div>
+  <div id="tableOfContents">
+    <h2>Table of Contents</h2>
+    <ul id="contentsList">
+      <li><a href="#programInfo">Program Information</a></li>
+      <li><a href="#syntax">Expression Parser Syntax</a></li>
+      <li><a href="#newTree">Creating a New Expression Tree</a></li>
+      <li><a href="#animate">Animating the Expression Tree</a></li>
+      <li><a href="#colors">Changing the Display Colors</a></li>
+      <li><a href="#export">Exporting an Image</a></li>
+      <li><a href="#truthTable">Displaying the Truth Table</a></li>
+      <li><a href="#contact">Contact and Support</a></li>
+    </ul>
+  </div>
+  <div id="programInfo">
+    <img src="docPics/philGNU.gif" alt="Image of Philosophical GNU" class="right" />
+    <h2>Program Information</h2>
+    <p>
+      <dfn>Logic Tree</dfn> is a free program for modeling complex logic gate networks. Logic Tree displays and animates 
+      representations of Boolean expressions inputted by the user. This program is free to edit and redistribute under the conditions
+      outlined in the <a href="http://www.gnu.org/copyleft/gpl.html" rel="external">GNU General Public License</a> agreement.
+    </p>
+  </div>
+  <div id="syntax">
+    <h2>Expression Parser Syntax</h2>
+    <p>Logic Tree's expression parser accepts Boolean algebra expressions written in infix notation. There are eight supported Boolean operators:</p>
+    <table summary="Operator Table">
+      <thead><tr><th>Symbol</th><th>Function</th><th>Symbol</th><th>Function</th></tr></thead>
+      <tbody>
+        <tr><td>AND</td><td>Binary And Operator</td><td>OR</td><td>Binary Or Operator</td></tr>
+        <tr><td>NAND</td><td>Inverse Binary And Operator</td><td>NOR</td><td>Inverse Binary Or Operator</td></tr>
+        <tr><td>NOT</td><td>Unary Not Operator</td><td>XOR</td><td>Binary Exclusive Or Operator</td></tr>
+        <tr><td>( )</td><td>Parenthesis</td><td>NXOR</td><td>Inverse Binary Exclusive Or Operator</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Operator precedence from lowest to highest is: XOR/NXOR, OR/NOR, AND/NAND, NOT, ( ). Each operator can take constants,
+      variables, or parenthesized expressions as operands. A variable is denoted by a $ (dollar sign) followed by any number
+      of alpha-numeric characters. Some examples of variable names are <var>$a</var>, <var>$1</var>, <var>$3apples</var>,
+      and <var>$number25</var>. The two constant values of true and false are represented by <var>$_TRUE</var> and
+      <var>$_FALSE</var>. Here are some examples of valid expressions:
+    </p>
+    <samp>
+      ($_TRUE XOR $_FALSE) NAND $apples OR $oranges<br />
+      $_TRUE<br />
+      $variable325<br />
+      ($a AND $b OR $c XOR $a AND $b) AND (($c XOR $a AND $b) OR $a AND $b)
+    </samp>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="newTree">
+    <h2>Creating a New Expression Tree</h2>
+    <ol>
+      <li>
+        <p>Begin by clicking the <span class="progTerm">File</span> menu and select the <span class="progTerm">New Logic Tree</span> option.</p>
+        <img src="docPics/1_step1.gif" alt="Step 1: Click File->New Logic Tree" />
+      </li>
+      <li>
+        <p>Enter a Boolean expression into the dialog box using the <a href="#syntax">proper syntax</a>.</p>
+        <img src="docPics/1_step2.gif" alt="Step 2: Enter a Boolean expression" />
+      </li>
+      <li>
+        <p>The expression tree should now be displayed in the window! Resize and scroll as necessary.</p>
+        <img src="docPics/1_step3.gif" alt="Step 3: Tree displayed!" />
+      </li>
+    </ol>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="inputVals">
+    <h2>Changing Input Values</h2>
+    <ol>
+      <li>
+        <p>
+          After <a href="#newTree">creating an expression tree</a>, click the <span class="progTerm">Tree Actions</span>
+          menu and select the <span class="progTerm">Edit Variables</span> option.
+        </p>
+        <img src="docPics/2_step1.gif" alt="Step 1: Click Tree Actions->Edit Variables" />
+      </li>
+      <li>
+        <p>
+          You should now see a dialog window with all your variable names next to checkboxes. All variable values default to
+          true, so all the checkboxes should start out checked. If you want to switch any values to false simply uncheck the
+          box next to the variable's name. If you want the changes to apply hit OK, and if not, hit Cancel.
+        </p>
+        <img src="docPics/2_step2.gif" alt="Step 2: Change variable values with checkboxes" />
+      </li>
+      <li>
+        <p>If you hit OK then the input displays will be updated, red for false and blue for true.</p>
+        <img src="docPics/2_step3.gif" alt="Step 3: Input displays should update" />
+      </li>
+    </ol>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="animate">
+    <h2>Animating the Expression Tree</h2>
+    <ol>
+      <li>
+        <p>Begin by <span class="progTerm">Tree Actions</span> menu and selecting the <span class="progTerm">Animate Tree</span> option.</p>
+        <img src="docPics/3_step1.gif" alt="Step 1: Click Tree Actions->Animate Tree" />
+      </li>
+      <li>
+        <p>Now wait as the expression tree animates the different values passing through the gates.</p>
+        <img src="docPics/3_step2.gif" alt="Step 2: Wait while the tree animates" />
+      </li>
+      <li>
+        <p>
+          You can reset the display after (or during) the animation by clicking the <span class="progTerm">Tree Actions</span>
+          menu and selecting the <span class="progTerm">Reset Tree</span> option. Resetting while the animation is running will stop it.
+        </p>
+        <img src="docPics/3_step3.gif" alt="Step 3: To reset the display click Tree Actions->Reset Tree" />
+      </li>
+    </ol>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="colors">
+    <h2>Changing the Display Colors</h2>
+    <ol>
+      <li>
+        <p>
+          To change the default colors for the display components in the expression tree click the <span class="progTerm">File</span> menu
+          and select the <span class="progTerm">Color Options</span> option. (Note: this must be done <em>before</em> you create a new
+          expression tree otherwise you will be unable to edit the colors)
+        </p>
+        <img src="docPics/6_step1.gif" alt="Step 1: Click File->Color Options" />
+      </li>
+      <li>
+        <p>
+          When the dialog appears it will have 3 buttons along the top filled with the current values for
+          drawing true, false, and null values. Click one of these buttons to edit the default color.
+        </p>
+        <img src="docPics/6_step2.gif" alt="Step 2: Click One of the 3 colored buttons" />
+      </li>
+      <li>
+        <p>Use one of the three Color Chooser tabs to select a new color and then hit OK.</p>
+        <img src="docPics/6_step3.gif" alt="Step 2: Select a new color" />
+      </li>
+      <li>
+        <p>Once you've decided on your colors click OK to set them or Cancel to void the changes.</p>
+        <img src="docPics/6_step4.gif" alt="Step 2: Click OK when you're finished" />
+      </li>
+      <li>
+        <p>Now you have a custom color-scheme for the expression tree display and animation!</p>
+        <img src="docPics/6_step5.gif" alt="Step 5: Click OK when you're finished" />
+    </ol>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="export">
+    <h2>Exporting an Image</h2>
+    <ol>
+      <li>
+        <p>
+          To export an image of the display click the <span class="progTerm">File</span> menu and
+          select the <span class="progTerm">Export Image</span> option.
+        </p>
+        <img src="docPics/4_step1.gif" alt="Step 1: Click File->Export Image" />
+      </li>
+      <li>
+        <p>
+          In the Save dialog, navigate to where you want your image saved and type in a name. All image
+          files are saved in <a href="http://en.wikipedia.org/wiki/PNG" rel="external">PNG format</a>.
+        </p>
+        <img src="docPics/4_step2.gif" alt="Step 2: Use the Save dialog to export your PNG image" />
+      </li>
+    </ol>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="truthTable">
+    <h2>Displaying the Truth Table</h2>
+    <ol>
+      <li>
+        <p>
+          To display your expression tree's truth table, click the <span class="progTerm">File</span>
+          menu and select the <span class="progTerm">Show Truth Table</span> option.
+        </p>
+        <img src="docPics/5_step1.gif" alt="Step 1: Click File->Show Truth Table" />
+      </li>
+      <li>
+        <p>
+          Your default browser should then open to display the truth table in HTML format and
+          you can use your browser to save a copy of the truth table for future use.
+        </p>
+        <img src="docPics/5_step2.gif" alt="Step 2: Your default browser should display the Truth Table" />
+      </li>
+      <li>
+        <p>
+          Using the "Web Page, HTML Only" option while saving is recommended over "Web Page,
+          Complete" since the truth table contains no external objects.
+        </p>
+        <img src="docPics/5_step3.gif" alt="Step 3: Use the &quot;Web Page, HTML Only&quot; when saving" />
+      </li>
+    </ol>
+    <a href="#content" class="return">Return to top</a>
+  </div>
+  <div id="contact">
+    <h2>Contact and Support</h2>
+    <p>If you have any questions, concerns, suggestions, or a bug to report, please visit <a href="http://ouuuuch.phoenixteam.org/" rel="external">http://ouuuuch.phoenixteam.org/</a>.</p>
+  </div>
+  <div id="footer">Copyright &copy; 2006 Nick Vrvilo</div>
+</div>
+</body>
+</html>
