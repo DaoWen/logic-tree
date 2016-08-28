@@ -5,7 +5,7 @@
  *
  * Logic Tree: A logic gate simulation program
  * Copyright (c) 2009 Nick Vrvilo
- * http://ouuuuch.phoenixteam.org/
+ * https://github.com/DaoWen/logic-tree
  * 
  * This program is distributed under the GNU General Public License.
  * For full deltails please see LicenseInfo.txt included with this source code.
@@ -33,7 +33,7 @@ public class AboutFrame extends JDialog implements MouseListener, ActionListener
     cp.setLayout(new BorderLayout());
     JPanel topPanel = new JPanel(new BorderLayout());
     JLabel label1 = new JLabel("<html><br>&nbsp;&nbsp;Logic Tree v1.0.3<br>&nbsp;&nbsp;Copyright � 2009 Nick Vrvilo</html>");
-    JLabel label2 = new JLabel("<html><font color=\"blue\">&nbsp;&nbsp;<u>http://ouuuuch.phoenixteam.org/</u></font></html>");
+    JLabel label2 = new JLabel("<html><font color=\"blue\">&nbsp;&nbsp;<u>https://github.com/DaoWen/logic-tree</u></font></html>");
     label2.addMouseListener(this);
     label2.setCursor(new Cursor(Cursor.HAND_CURSOR));
     JLabel label3 = new JLabel("<html><br>&nbsp;&nbsp;This program is distributed under the GNU General Public License (Version 2):</html>");
@@ -66,7 +66,7 @@ public class AboutFrame extends JDialog implements MouseListener, ActionListener
   
   /** Used to launch the website link when clicked */
   public void mouseClicked(MouseEvent e) {
-    BrowserControl.displayURL("http://ouuuuch.phoenixteam.org/");
+    BrowserControl.displayURL("https://github.com/DaoWen/logic-tree");
   }
   
   /** Unused */

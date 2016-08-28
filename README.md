@@ -143,6 +143,6 @@ Displaying the Truth Table
 Contact and Support
 -------------------
 
-If you have any questions, concerns, suggestions, or a bug to report, please visit <http://ouuuuch.phoenixteam.org/>.
+If you have any questions, concerns, suggestions, or a bug to report, please visit <https://github.com/DaoWen/logic-tree>.
 
 Copyright &copy; 2006 Nick Vrvilo

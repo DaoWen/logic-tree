@@ -5,7 +5,7 @@
  *
  * Logic Tree: A logic gate simulation program
  * Copyright (c) 2009 Nick Vrvilo
- * http://ouuuuch.phoenixteam.org/
+ * https://github.com/DaoWen/logic-tree
  * 
  * This program is distributed under the GNU General Public License.
  * For full deltails please see LicenseInfo.txt included with this source code.
