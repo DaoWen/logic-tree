@@ -18,7 +18,11 @@
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}"/>
     <!-- Put everything in ${build} into the ${dist}/LogicTree.jar file -->
-    <jar jarfile="${dist}/LogicTree.jar" basedir="${build}">
+    <jar jarfile="${dist}/LogicTree.jar">
+      <fileset dir="${build}"/>
+      <fileset file="GNU GPL V2.txt"/>
+      <fileset file="LicenseInfo.txt"/>
+      <fileset file="README.md"/>
       <!-- Set logictree.Main as the Main-Class -->
       <manifest><attribute name="Main-Class" value="logictree.Main"/></manifest>
     </jar>
