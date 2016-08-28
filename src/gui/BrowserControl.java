@@ -15,109 +15,44 @@
 package gui;
 
 import java.io.IOException;
+import java.awt.Desktop;
+import java.net.URI;
 
-/** A simple, static class to display a URL in the system browser.
- * 
+/**
+ * Simple utility for opening a URL in the system default browser.
  *
- * <p>Under Unix, the system browser is hard-coded to be 'netscape'.
- * Netscape must be in your PATH for this to work.  This has been
- * tested with the following platforms: AIX, HP-UX and Solaris.</p>
- *
- * <p>Under Windows, this will bring up the default browser under windows,
- * usually either Netscape or Microsoft IE.  The default browser is
- * determined by the OS.  This has been tested under Windows 95/98/NT.</p>
- *
- * Examples:<ul>
- * <li><code>BrowserControl.displayURL("http://www.javaworld.com");</code></li>
- * <li><code>BrowserControl.displayURL("file://c:\\docs\\index.html");</code></li>
- * <li><code>BrowserContorl.displayURL("file:///user/joe/index.html");</code></li></ul>
- * 
- * <p>Note - you must include the url type -- either <code>"http://"</code> or <code>"file://"</code>.</p>
- * (Code downloaded from <a href="http://www.javaworld.com/javaworld/javatips/jw-javatip66.html">
- * http://www.javaworld.com/javaworld/javatips/jw-javatip66.html</a>)
  * @author Nick Vrvilo
  */
-public class BrowserControl
-{
+public class BrowserControl {
+
     /**
-     * Display a file in the system browser.  If you want to display a
-     * file, you must include the absolute path name.
+     * Open a URI with the browser.
      *
-     * @param url the file's url (the url must start with either "http://" or "file://").
+     * @param url the file's URI
      */
-    public static void displayURL(String url)
-    {
-        boolean windows = isWindowsPlatform();
-        String cmd = null;
-        try
-        {
-            if (windows)
-            {
-                // cmd = 'rundll32 url.dll,FileProtocolHandler http://...'
-                cmd = WIN_PATH + " " + WIN_FLAG + " " + url;
-                Process p = Runtime.getRuntime().exec(cmd);
+    public static void displayURL(String url) {
+        try {
+            if(Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
             }
-            else
-            {
-                // Under Unix, Netscape has to be running for the "-remote"
-                // command to work.  So, we try sending the command and
-                // check for an exit value.  If the exit command is 0,
-                // it worked, otherwise we need to start the browser.
-                // cmd = 'netscape -remote openURL(http://www.javaworld.com)'
-                cmd = UNIX_PATH + " " + UNIX_FLAG + "(" + url + ")";
-                Process p = Runtime.getRuntime().exec(cmd);
-                try
-                {
-                    // wait for exit code -- if it's 0, command worked,
-                    // otherwise we need to start the browser up.
-                    int exitCode = p.waitFor();
-                    if (exitCode != 0)
-                    {
-                        // Command failed, start up the browser
-                        // cmd = 'netscape http://www.javaworld.com'
-                        cmd = UNIX_PATH + " "  + url;
-                        p = Runtime.getRuntime().exec(cmd);
-                    }
-                }
-                catch(InterruptedException x)
-                {
-                    System.err.println("Error bringing up browser, cmd='" +
-                                       cmd + "'");
-                    System.err.println("Caught: " + x);
-                }
+            else if (hasXdg()) {
+                Runtime.getRuntime().exec(new String[] { "xdg-open", url });
             }
         }
-        catch(IOException x)
-        {
-            // couldn't exec browser
-            System.err.println("Could not invoke browser, command=" + cmd);
-            System.err.println("Caught: " + x);
+        catch(Exception ex) {
+            System.err.println("Could not invoke browser, URI=" + url);
+            System.err.println("Caught: "  + ex);
         }
     }
-    /**
-     * Try to determine whether this application is running under Windows
-     * or some other platform by examing the "os.name" property.
-     *
-     * @return true if this application is running under a Windows OS
-     */
-    public static boolean isWindowsPlatform()
-    {
-        String os = System.getProperty("os.name");
-        if ( os != null && os.startsWith(WIN_ID))
-            return true;
-        else
-            return false;
 
+    /**
+     * Check if the current platform supports xdg-open
+     * (generic app for launching things in X-Windows environment)
+     *
+     * @return true if xdg-open command is available
+     */
+    public static boolean hasXdg() throws IOException {
+        return Runtime.getRuntime().exec("type xdg-open").exitValue() == 0;
     }
 
-    // Used to identify the windows platform.
-    private static final String WIN_ID = "Windows";
-    // The default system browser under windows.
-    private static final String WIN_PATH = "rundll32";
-    // The flag to display a url.
-    private static final String WIN_FLAG = "url.dll,FileProtocolHandler";
-    // The default browser under unix.
-    private static final String UNIX_PATH = "netscape";
-    // The flag to display a url.
-    private static final String UNIX_FLAG = "-remote openURL";
 }

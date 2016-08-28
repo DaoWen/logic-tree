@@ -227,10 +227,9 @@ public class MainFrame extends JFrame implements ActionListener {
         if (canvas != null) {
           try {
             File htmlFile = new File("truthTable.html");
-            FileOutputStream fileStream = new FileOutputStream(htmlFile);          
+            FileOutputStream fileStream = new FileOutputStream(htmlFile);
             BoolExpTree.generateTruthTableHTML(fileStream);
             fileStream.close();
-            //BrowserControl.displayURL("file://"+htmlFile.getAbsolutePath());
             BrowserControl.displayURL(htmlFile.toURL().toString());
           }
           catch (IOException ie) {
@@ -284,12 +283,13 @@ public class MainFrame extends JFrame implements ActionListener {
             BrowserControl.displayURL(docFile.toURL().toString());
           }
           else {
-            JOptionPane.showMessageDialog(this,"ERROR: Problem retrieving documentation file","Error",JOptionPane.ERROR_MESSAGE);
+            String docsURL = "https://github.com/DaoWen/logic-tree#readme";
+            BrowserControl.displayURL(docsURL);
           }
         }
         catch (IOException ie) {
-          JOptionPane.showMessageDialog(this,"ERROR: Problem creating HTML file","Error",JOptionPane.ERROR_MESSAGE);
-          System.err.println("Error writing HTML file:\n"+ie);
+          JOptionPane.showMessageDialog(this,"ERROR: Opening HTML file", "Error", JOptionPane.ERROR_MESSAGE);
+          System.err.println("Error opening HTML file:\n"+ie);
         }
         break;
       // Display options dialog
