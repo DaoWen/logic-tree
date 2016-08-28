@@ -5,6 +5,7 @@
   <property name="src" location="src"/>
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
+  <property name="version" value="v1_0_1"/>
   <target name="compile" description="compile the source ">
     <!-- Compile the java code from ${src} into ${build} -->
     <mkdir dir="${build}"/>
@@ -17,8 +18,8 @@
   <target name="dist" depends="compile" description="generate the distribution">
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}"/>
-    <!-- Put everything in ${build} into the ${dist}/LogicTree.jar file -->
-    <jar jarfile="${dist}/LogicTree.jar">
+    <!-- Put everything in ${build} into the JAR file -->
+    <jar jarfile="${dist}/LogicTree-${version}.jar">
       <fileset dir="${build}"/>
       <fileset file="GNU GPL V2.txt"/>
       <fileset file="LicenseInfo.txt"/>
